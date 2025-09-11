@@ -6,7 +6,7 @@ namespace Calculator
     {
         public static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(578%512);
         }
         
         public static int Add(int a, int b) => a + b;
