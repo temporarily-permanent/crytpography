@@ -11,7 +11,8 @@ public class SHA_1
 
 	private List<sbyte> PaddingMessageSHA1(List<sbyte> Input)
 	{
-		sbyte[] output = new sbyte[512];
+		//todo check if math checks out
+		sbyte[] output = new sbyte[(int)Math.Ceiling((double)Input.Count / 64) * 64];
 
 		//
 		for (int i = 0; i < Input.Count; i++)
@@ -19,7 +20,8 @@ public class SHA_1
 			output[i] = Input[i];
 		}
 		
-		// calculate k 
+		// calculate amount of 0 needed in padding 
+		int k = 60 - Input.Count % 64;
 
 		if (((Input.Count * 8) % 512) < 448)
 		{

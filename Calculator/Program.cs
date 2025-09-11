@@ -7,6 +7,7 @@ namespace Calculator
         public static void Main()
         {
             Console.WriteLine(578%512);
+            Math.Round(3.98, 0, MidpointRounding.AwayFromZero);
         }
         
         public static int Add(int a, int b) => a + b;
