@@ -3,7 +3,7 @@ namespace Calculator.Cryptography;
 
 public class SHA_1
 {
-	public static List<sbyte> SHA1(List<sbyte> Input)
+	public static List<byte> SHA1(List<byte> Input)
 	{
 		//todo padding message
 		throw new NotImplementedException();
@@ -27,11 +27,19 @@ public class SHA_1
 
 		int index = Input.Count + 1;
 		output[index] = 0b10000000;
+
+		//fill out the rest of zero's
+		for (int i = index; i < output.Length - 4; i++)
+		{
+			output[i] = 0b00000000;
+		}
 		
-		if (((Input.Count * 8) % 512) < 448)
+		// todo set size of message in message
+		
+		/*if (((Input.Count * 8) % 512) < 448)
 		{
 			throw new ArithmeticException();
-		} 
+		} */
 		
 		return output.ToList();
 	}
