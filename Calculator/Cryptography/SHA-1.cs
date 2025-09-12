@@ -1,4 +1,5 @@
-﻿namespace Calculator.Cryptography;
+﻿using System;
+namespace Calculator.Cryptography;
 
 public class SHA_1
 {
@@ -8,11 +9,11 @@ public class SHA_1
 		throw new NotImplementedException();
 	}
 
-	private List<sbyte> PaddingMessageSHA1(List<sbyte> Input)
+	private List<byte> PaddingMessageSHA1(List<byte> Input)
 	{
 		//todo check if math checks out
 		//todo check if math checks out
-		sbyte[] output = new sbyte[(int)Math.Ceiling((double)Input.Count / 64) * 64];
+		byte[] output = new byte[(int)Math.Ceiling((double)Input.Count / 64) * 64];
 
 		//copy message over
 		for (int i = 0; i < Input.Count; i++)
@@ -20,12 +21,12 @@ public class SHA_1
 			output[i] = Input[i];
 		}
 		
-		// calculate amount of 0 needed in padding
+		// calculate amount of 0 needed in padding, it's called k cause that's how it's called in the specification
 		int excess = Input.Count % 64;
 		int k = 60 - excess;
 
 		int index = Input.Count + 1;
-		output[index] = 0bx1000000;
+		output[index] = 0b10000000;
 		
 		if (((Input.Count * 8) % 512) < 448)
 		{
