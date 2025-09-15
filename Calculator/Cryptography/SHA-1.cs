@@ -9,7 +9,7 @@ public class SHA_1
 		throw new NotImplementedException();
 	}
 
-	private List<byte> PaddingMessageSHA1(List<byte> Input)
+	public static List<byte> PaddingMessageSHA1(List<byte> Input)
 	{
 		//size of output is determined here and should not change
 		byte[] output = new byte[(int)Math.Ceiling((double)Input.Count / 64) * 64];

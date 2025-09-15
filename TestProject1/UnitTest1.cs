@@ -19,6 +19,28 @@ public class Tests
     [Test]
     public void Does_PaddingMessageSHA1_ReturnCorrectlyPaddedMessage()
     {
+        List<byte> result =
+        [
+            104, 97, 108, 108, 111, 44, 32, 104,
+            111, 101, 32, 103, 97, 97, 116, 32,
+            104, 101, 116, 32, 101, 114, 109, 101,
+            101, 128, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 200
+        ];
+
+        List<byte> input =
+        [
+            104, 97, 108, 108, 111, 44, 32, 104,
+            111, 101, 32, 103, 97, 97, 116, 32,
+            104, 101, 116, 32, 101, 114, 109, 101,
+            101, 
+        ];
         
+
+        Assert.That(result, Is.EqualTo(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input)));
+
     }
 }
