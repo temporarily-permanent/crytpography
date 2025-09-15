@@ -5,6 +5,7 @@ public class SHA_1
 {
 	public static List<byte> SHA1(List<byte> Input)
 	{
+		//https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
 		//SHA-1 constants
 		//K1 5a827999
 		//K2 6ed9eba1
