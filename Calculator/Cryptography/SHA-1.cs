@@ -5,7 +5,19 @@ public class SHA_1
 {
 	public static List<byte> SHA1(List<byte> Input)
 	{
-		//todo padding message
+		uint H0 = 0x67452301;
+		uint H1 = 0xefcdab89;
+		uint H2 = 0x98badcfe;
+		uint H3 = 0x10325476;
+		uint H4 = 0xc3d2e1f0;
+		
+		//done padding message
+		List<byte> paddedMessage = PaddingMessageSHA1(Input);
+		
+		//todo parsing the message
+		paddedMessage.
+		
+		//todo Prepare the message schedule
 		throw new NotImplementedException();
 	}
 
@@ -20,7 +32,6 @@ public class SHA_1
 			output[i] = 0b11111111;
 		}
 		
-
 		//copy message over
 		for (int i = 0; i < Input.Count; i++)
 		{
@@ -31,8 +42,7 @@ public class SHA_1
 		int excess = Input.Count % 64;
 		int k = 64 - 8 - excess;
 		int lastIndex = Input.Count + k;
-
-
+		
 		int index = Input.Count;
 		output[index] = 0b10000000;
 		index++;
@@ -43,14 +53,9 @@ public class SHA_1
 			output[i] = 0b00000000;
 		}
 		
-		// todo set size of message in message
-		
+		//set size of message in message
 		byte[] inputSize = BitConverter.GetBytes((long)(Input.Count * 8));
 		Array.Reverse(inputSize);
-		Console.WriteLine("---------------");
-		Console.WriteLine(inputSize.Length);
-		
-		Console.WriteLine(output.Length);
 
 		for (int i = 0; i < 8; i++)
 		{

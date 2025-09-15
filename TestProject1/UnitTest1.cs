@@ -39,8 +39,6 @@ public class Tests
             101, 
         ];
         
-
         Assert.That(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input), Is.EqualTo(result));
-
     }
 }
