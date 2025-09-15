@@ -29,8 +29,9 @@ public class SHA_1
 		
 		// calculate amount of 0 needed in padding, it's called k cause that's how it's called in the specification
 		int excess = Input.Count % 64;
-		int k = 60 - excess;
+		int k = 64 - 8 - excess;
 		int lastIndex = Input.Count + k;
+
 
 		int index = Input.Count + 1;
 		output[index] = 0b10000000;
@@ -43,13 +44,12 @@ public class SHA_1
 		
 		// todo set size of message in message
 		
-		/*if (((Input.Count * 8) % 512) < 448)
-		{
-			throw new ArithmeticException();
-		} */
+		byte[] inputSize = BitConverter.GetBytes(Input.Count);
 
-		BitConverter.GetBytes()
-			;
+		for (int i = 0; i < 8; i++)
+		{
+			output[lastIndex + i] = inputSize[i];
+		}
 		
 		return output.ToList();
 	}

@@ -9,8 +9,14 @@ namespace Calculator
             byte[] nullTest = new byte[1234];
             Console.WriteLine(578%512);
             Console.WriteLine(nullTest[34]);
-            nullTest[34] = null;
+            nullTest[34] = 0;
             Console.WriteLine(nullTest[34]);
+            int b = 6; 
+            byte[] aaa =  BitConverter.GetBytes(b) ;
+            foreach (var d in aaa)
+            {
+                Console.WriteLine(d.ToString("X2"));
+            }
         }
         
         
