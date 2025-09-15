@@ -23,8 +23,12 @@ public class SHA_1
 		
 		//todo parsing the message
 		paddedMessage.
-		
+			
+		// for each message block
 		//todo Prepare the message schedule
+		//todo Initialize working variables
+		//todo Compute intermediate hash 
+		
 		throw new NotImplementedException();
 	}
 
