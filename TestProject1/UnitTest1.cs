@@ -15,4 +15,10 @@ public class Tests
     {
         Assert.That(Calculator.Program.Add(5,5), Is.EqualTo(10));
     }
+
+    [Test]
+    public void Does_PaddingMessageSHA1_ReturnCorrectlyPaddedMessage()
+    {
+        
+    }
 }
