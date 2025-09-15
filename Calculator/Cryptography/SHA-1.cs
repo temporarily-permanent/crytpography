@@ -33,8 +33,9 @@ public class SHA_1
 		int lastIndex = Input.Count + k;
 
 
-		int index = Input.Count + 1;
+		int index = Input.Count;
 		output[index] = 0b10000000;
+		index++;
 
 		//fill out the rest of zero's
 		for (int i = index; i < lastIndex; i++)
@@ -44,10 +45,16 @@ public class SHA_1
 		
 		// todo set size of message in message
 		
-		byte[] inputSize = BitConverter.GetBytes(Input.Count);
+		byte[] inputSize = BitConverter.GetBytes((long)(Input.Count * 8));
+		Array.Reverse(inputSize);
+		Console.WriteLine("---------------");
+		Console.WriteLine(inputSize.Length);
+		
+		Console.WriteLine(output.Length);
 
 		for (int i = 0; i < 8; i++)
 		{
+			Console.WriteLine(i);
 			output[lastIndex + i] = inputSize[i];
 		}
 		

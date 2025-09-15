@@ -40,7 +40,7 @@ public class Tests
         ];
         
 
-        Assert.That(result, Is.EqualTo(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input)));
+        Assert.That(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input), Is.EqualTo(result));
 
     }
 }
