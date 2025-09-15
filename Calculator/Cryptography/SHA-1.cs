@@ -5,6 +5,13 @@ public class SHA_1
 {
 	public static List<byte> SHA1(List<byte> Input)
 	{
+		//SHA-1 constants
+		//K1 5a827999
+		//K2 6ed9eba1
+		//K3 8f1bbcdc
+		//K4 ca62c1d6
+		
+		//initial hashing values
 		uint H0 = 0x67452301;
 		uint H1 = 0xefcdab89;
 		uint H2 = 0x98badcfe;
