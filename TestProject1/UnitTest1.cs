@@ -38,7 +38,15 @@ public class Tests
             104, 101, 116, 32, 101, 114, 109, 101,
             101, 
         ];
+
+        List<uint> resultUint = 
+        [
+            1751477356, 1869573992, 1869779303, 1633908512, 
+            1752461600, 1701995621, 1701343232, 0, 
+            0, 0, 0, 0, 
+            0, 0, 0, 200
+        ];
         
-        Assert.That(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input), Is.EqualTo(result));
+        Assert.That(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input), Is.EqualTo(resultUint));
     }
 }

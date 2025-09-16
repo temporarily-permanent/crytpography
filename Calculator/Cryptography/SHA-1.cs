@@ -20,10 +20,13 @@ public class SHA_1
 		uint H4 = 0xc3d2e1f0;
 		
 		//done padding message
-		List<byte> paddedMessage = PaddingMessageSHA1(Input);
-		
+		//List<byte> paddedMessage = PaddingMessageSHA1(Input);
+		//for (int i = 0; i >= paddedMessage.Count / 64; i++)
+		{
+			
+		}
 		//todo parsing the message
-		paddedMessage.
+		//paddedMessage.
 			
 		// for each message block
 		//todo Prepare the message schedule
@@ -33,7 +36,8 @@ public class SHA_1
 		throw new NotImplementedException();
 	}
 
-	public static List<byte> PaddingMessageSHA1(List<byte> Input)
+
+	public static List<uint> PaddingMessageSHA1(List<byte> Input)
 	{
 		//size of output is determined here and should not change
 		byte[] output = new byte[(int)Math.Ceiling((double)Input.Count / 64) * 64];
@@ -75,6 +79,20 @@ public class SHA_1
 			output[lastIndex + i] = inputSize[i];
 		}
 		
-		return output.ToList();
+		//return output.ToList();
+		
+		//convert to list<uint> to work with 32-bit words later
+		uint[] output2 = new uint[output.Length / 4] ;
+
+		for (int i = 0; i < output.Length / 4; i++)
+		{
+			int j = i * 4;
+			output2[i] =
+				((uint)output[j] << 24) |
+				((uint)output[j + 1] << 16) |
+				((uint)output[j + 2] << 8) |
+				((uint)output[j + 3]);
+		}
+		return output2.ToList();
 	}
 }
