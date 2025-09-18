@@ -88,11 +88,19 @@ public class SHA_1
 		{
 			int j = i * 4;
 			output2[i] =
-				((uint)output[j] << 24) |
+				((uint)output[j]     << 24) |
 				((uint)output[j + 1] << 16) |
-				((uint)output[j + 2] << 8) |
+				((uint)output[j + 2] <<  8) |
 				((uint)output[j + 3]);
 		}
 		return output2.ToList();
+	}
+
+	public static uint L_ByteToUint(List<byte> Input)
+	{
+		return ((uint)Input[0] << 24) |
+		       ((uint)Input[1] << 16) |
+		       ((uint)Input[2] <<  8) |
+		       ((uint)Input[3]);
 	}
 }
