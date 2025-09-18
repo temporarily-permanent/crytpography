@@ -12,9 +12,14 @@
     &lt;TestId&gt;NUnit3x::1DD2A887-47AF-4DBB-9CFB-777940A6B645::net9.0::TestProject1.Tests.LByteToUintTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4dd6796a_002D6382_002D4073_002D96aa_002D89cc93f40153/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="LByteToUintTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4dd6796a_002D6382_002D4073_002D96aa_002D89cc93f40153/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="LByteToUintTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1DD2A887-47AF-4DBB-9CFB-777940A6B645::net9.0::TestProject1.Tests.LByteToUintTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::1DD2A887-47AF-4DBB-9CFB-777940A6B645::net9.0::TestProject1.Tests.Does_PaddingMessageSHA1_ReturnCorrectlyPaddedMessage&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d90b6f81_002D699b_002D4be9_002Db049_002D5dc6151daf84/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Does_PaddingMessageSHA1_ReturnCorrectlyPaddedMessage" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1DD2A887-47AF-4DBB-9CFB-777940A6B645::net9.0::TestProject1.Tests.Does_PaddingMessageSHA1_ReturnCorrectlyPaddedMessage&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
