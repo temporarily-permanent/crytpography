@@ -17,6 +17,15 @@ public class Tests
     }
 
     [Test]
+    public void Does_PrepareMessageScheduleSHA1_ReturnCorrectResult()
+    {
+        //List<uint> input;
+        //uint[] expectedResult;
+        //uint[] returnedResult = Calculator.Cryptography.SHA_1.PrepareMessageScheduleSHA1();
+        //Assert.That(returnedResult, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
     public void Does_PaddingMessageSHA1_ReturnCorrectlyPaddedMessage()
     {
         List<byte> input =

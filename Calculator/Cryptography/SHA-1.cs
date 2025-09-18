@@ -20,20 +20,54 @@ public class SHA_1
 		uint H4 = 0xc3d2e1f0;
 		
 		//done padding message
-		//List<byte> paddedMessage = PaddingMessageSHA1(Input);
-		//for (int i = 0; i >= paddedMessage.Count / 64; i++)
+		List<uint> paddedMessage = PaddingMessageSHA1(Input);
+		for (int i = 0; i >= paddedMessage.Count / 64; i++)
 		{
-			
+			//todo Prepare the message schedule
+			uint[] messageSchedule = PrepareMessageScheduleSHA1();
+			int currentBlockIndex = i * 16;
+
+			//copy current block into message schedule
+			for (int j = 0 ; j < 16; j++)
+			{
+				messageSchedule[j] = paddedMessage[j + currentBlockIndex];
+			}
+
+			//fill 16 <= t <= 80 out
+			for (int h = 16; h < 80; h++)
+			{
+				//messageSchedule[h] = ;
+				//uint.CreateChecked()
+			}
+
 		}
 		//todo parsing the message
 		//paddedMessage.
 			
 		// for each message block
-		//todo Prepare the message schedule
 		//todo Initialize working variables
 		//todo Compute intermediate hash 
 		
 		throw new NotImplementedException();
+	}
+
+	public static uint[] PrepareMessageScheduleSHA1(List<uint> Input)
+	{
+		uint[] output = new uint[80];
+		//copy current block into message schedule
+		for (int j = 0 ; j < 16; j++)
+		{
+			output[j] = Input[j];
+		}
+
+		//fill 16 <= t <= 80 out
+		for (int h = 16; h < 80; h++)
+		{
+			//messageSchedule[h] = ;
+			//uint.CreateChecked()
+		}
+		throw new NotImplementedException();
+		
 	}
 
 
@@ -91,7 +125,7 @@ public class SHA_1
 				((uint)output[j]     << 24) |
 				((uint)output[j + 1] << 16) |
 				((uint)output[j + 2] <<  8) |
-				((uint)output[j + 3]);
+					   output[j + 3]        ;
 		}
 		return output2.ToList();
 	}
