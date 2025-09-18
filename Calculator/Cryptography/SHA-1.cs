@@ -95,12 +95,4 @@ public class SHA_1
 		}
 		return output2.ToList();
 	}
-
-	public static uint L_ByteToUint(List<byte> Input)
-	{
-		return ((uint)Input[0] << 24) |
-		       ((uint)Input[1] << 16) |
-		       ((uint)Input[2] <<  8) |
-		       ((uint)Input[3]);
-	}
 }
