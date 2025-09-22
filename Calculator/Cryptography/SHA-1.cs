@@ -3,14 +3,14 @@ namespace Calculator.Cryptography;
 
 public class SHA_1
 {
-	public static List<byte> SHA1(List<byte> Input)
+	public static string SHA1(List<byte> Input)
 	{
 		//https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
 		//SHA-1 constants
-		//K1 5a827999
-		//K2 6ed9eba1
-		//K3 8f1bbcdc
-		//K4 ca62c1d6
+		const uint K1 = 0x5a827999;
+		const uint K2 = 0x6ed9eba1;
+		const uint K3 = 0x8f1bbcdc;
+		const uint K4 = 0xca62c1d6;
 		
 		//initial hashing values
 		uint H0 = 0x67452301;
@@ -24,30 +24,52 @@ public class SHA_1
 		for (int i = 0; i >= paddedMessage.Count / 64; i++)
 		{
 			//todo Prepare the message schedule
-			uint[] messageSchedule = PrepareMessageScheduleSHA1();
 			int currentBlockIndex = i * 16;
+			uint[] messageSchedule = PrepareMessageScheduleSHA1(paddedMessage.Slice(currentBlockIndex, 16));
 
-			//copy current block into message schedule
-			for (int j = 0 ; j < 16; j++)
+			//Initialize working variables
+			uint a = H0, b = H1, c = H2, d = H3, e = H4, T;
+
+			//Compute intermediate hash
+			for (int j = 0; j < 20; j++)
 			{
-				messageSchedule[j] = paddedMessage[j + currentBlockIndex];
+				T = uint.RotateLeft(a,5) + Ch(b,c,d) + e + K1 + messageSchedule[j];
+				e = d; d = c; c = uint.RotateLeft(b, 30); b = a; a = T;
 			}
-
-			//fill 16 <= t <= 80 out
-			for (int h = 16; h < 80; h++)
-			{
-				//messageSchedule[h] = ;
-				//uint.CreateChecked()
-			}
-
-		}
-		//todo parsing the message
-		//paddedMessage.
 			
-		// for each message block
-		//todo Initialize working variables
-		//todo Compute intermediate hash 
+			for (int j = 20; j < 40; j++)
+			{
+				T = uint.RotateLeft(a,5) + Parity(b,c,d) + e + K2 + messageSchedule[j];
+				e = d; d = c; c = uint.RotateLeft(b, 30); b = a; a = T;
+			}
+			for (int j = 40; j < 60; j++)
+			{
+				T = uint.RotateLeft(a,5) + Maj(b,c,d) + e + K3 + messageSchedule[j];
+				e = d; d = c; c = uint.RotateLeft(b, 30); b = a; a = T;
+			}
+			for (int j = 60; j < 80; j++)
+			{
+				T = uint.RotateLeft(a,5) + Parity(b,c,d) + e + K4 + messageSchedule[j];
+				e = d; d = c; c = uint.RotateLeft(b, 30); b = a; a = T;
+			}
+
+			//compute intermediate hash
+			H0 = a + H0; H1 = b + H1; H2 = c + H2; H3 = d + H3; H4 = e + H4;
+		}
 		
+		return H0.ToString() + H1.ToString()+H2.ToString()+H3.ToString()+H4.ToString();
+	}
+
+	private static uint Ch(uint a, uint b, uint c)
+	{
+		throw new NotImplementedException();
+	}
+	private static uint Parity(uint a, uint b, uint c)
+	{
+		throw new NotImplementedException();
+	}
+	private static uint Maj(uint a, uint b, uint c)
+	{
 		throw new NotImplementedException();
 	}
 
@@ -63,10 +85,9 @@ public class SHA_1
 		//fill 16 <= t <= 80 out
 		for (int h = 16; h < 80; h++)
 		{
-			//messageSchedule[h] = ;
+			output[h] = uint.RotateLeft(output[h - 3] | output[h - 8] | output[h - 14] | output[h - 16], 1);
 		}
-		throw new NotImplementedException();
-		
+		return output;
 	}
 
 

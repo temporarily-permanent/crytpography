@@ -47,3 +47,5 @@ public class Tests
         Assert.That(Calculator.Cryptography.SHA_1.PaddingMessageSHA1(input), Is.EqualTo(resultUint));
     }
 }
+
+
