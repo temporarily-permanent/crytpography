@@ -56,21 +56,21 @@ public class SHA_1
 			//compute intermediate hash
 			H0 = a + H0; H1 = b + H1; H2 = c + H2; H3 = d + H3; H4 = e + H4;
 		}
-		
-		return H0.ToString() + H1.ToString()+H2.ToString()+H3.ToString()+H4.ToString();
+
+		return H0.ToString() + H1.ToString() + H2.ToString() + H3.ToString() + H4.ToString();
 	}
 
 	private static uint Ch(uint a, uint b, uint c)
 	{
-		throw new NotImplementedException();
+		return (a & b) | (~b & c);
 	}
 	private static uint Parity(uint a, uint b, uint c)
 	{
-		throw new NotImplementedException();
+		return a | b | c;
 	}
 	private static uint Maj(uint a, uint b, uint c)
 	{
-		throw new NotImplementedException();
+		return (a & b) | (a & c) | (b & c);
 	}
 
 	public static uint[] PrepareMessageScheduleSHA1(List<uint> Input)
