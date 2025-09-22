@@ -64,7 +64,6 @@ public class SHA_1
 		for (int h = 16; h < 80; h++)
 		{
 			//messageSchedule[h] = ;
-			//uint.CreateChecked()
 		}
 		throw new NotImplementedException();
 		
