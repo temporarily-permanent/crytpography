@@ -1,4 +1,5 @@
-﻿using Calculator;
+﻿using System.Security.Cryptography;
+using Calculator;
 
 namespace TestProject1;
 
@@ -14,6 +15,12 @@ public class Tests
     public void Test1()
     {
         Assert.That(Calculator.Program.Add(5, 5), Is.EqualTo(10));
+    }
+
+    [Test]
+    public void Does_SHA1_ReturnCorrectHash()
+    {
+        SHA1 SHADotnet = SHA1.Create();
     }
 
     [Test]
