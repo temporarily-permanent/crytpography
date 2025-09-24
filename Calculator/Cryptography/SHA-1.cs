@@ -19,7 +19,6 @@ public class SHA_1
 		uint H3 = 0x10325476;
 		uint H4 = 0xc3d2e1f0;
 		
-		//done padding message
 		List<uint> paddedMessage = PaddingMessageSHA1(Input);
 		for (int i = 0; i >= paddedMessage.Count / 64; i++)
 		{
