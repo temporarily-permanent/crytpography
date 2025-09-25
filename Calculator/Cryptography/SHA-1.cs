@@ -20,7 +20,7 @@ public class SHA_1
 		uint H4 = 0xc3d2e1f0;
 		
 		List<uint> paddedMessage = PaddingMessageSHA1(Input);
-		for (int i = 0; i >= paddedMessage.Count / 64; i++)
+		for (int i = 0; i < paddedMessage.Count / 64; i++)
 		{
 			//Prepare the message schedule
 			int currentBlockIndex = i * 16;
@@ -56,7 +56,9 @@ public class SHA_1
 			H0 = a + H0; H1 = b + H1; H2 = c + H2; H3 = d + H3; H4 = e + H4;
 		}
 
-		return H0.ToString() + H1.ToString() + H2.ToString() + H3.ToString() + H4.ToString();
+		uint[] output = new uint[5]{H0, H1, H2, H3, H4};
+		//return H0.ToString() + H1.ToString() + H2.ToString() + H3.ToString() + H4.ToString();
+		throw new NotImplementedException();
 	}
 
 	private static uint Ch(uint a, uint b, uint c)
@@ -128,7 +130,6 @@ public class SHA_1
 
 		for (int i = 0; i < 8; i++)
 		{
-			Console.WriteLine(i);
 			output[lastIndex + i] = inputSize[i];
 		}
 		

@@ -20,7 +20,12 @@ public class Tests
     [Test]
     public void Does_SHA1_ReturnCorrectHash()
     {
-        SHA1 SHADotnet = SHA1.Create();
+        string input = "Hello World!";
+        using (SHA1 SHADotnet = SHA1.Create())
+        {
+            
+            //Assert.That(Calculator.Cryptography.SHA_1.SHA1(H), Is.EqualTo());
+        }
     }
 
     [Test]
