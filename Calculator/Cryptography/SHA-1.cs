@@ -20,7 +20,7 @@ public class SHA_1
 		uint H4 = 0xc3d2e1f0;
 		
 		List<uint> paddedMessage = PaddingMessageSHA1(Input);
-		for (int i = 0; i < paddedMessage.Count / 64; i++)
+		for (int i = 0; i < paddedMessage.Count / 16; i++)
 		{
 			//Prepare the message schedule
 			int currentBlockIndex = i * 16;
@@ -57,21 +57,35 @@ public class SHA_1
 		}
 
 		uint[] output = new uint[5]{H0, H1, H2, H3, H4};
+		byte[] bytes = new byte[20];
+
+		for (int i = 0; i < output.Length; i++)
+		{
+			byte[] temp = BitConverter.GetBytes(output[i]);
+			if (BitConverter.IsLittleEndian)
+			{
+				Array.Reverse(temp);
+			} // fix endian
+
+			Buffer.BlockCopy(temp, 0, bytes, i * 4, 4);
+		}
+		
+		return BitConverter.ToString(bytes).Replace("-", string.Empty);
 		//return H0.ToString() + H1.ToString() + H2.ToString() + H3.ToString() + H4.ToString();
 		throw new NotImplementedException();
 	}
 
 	private static uint Ch(uint a, uint b, uint c)
 	{
-		return (a & b) | (~b & c);
+		return (a & b) ^ (~b & c);
 	}
 	private static uint Parity(uint a, uint b, uint c)
 	{
-		return a | b | c;
+		return a ^ b ^ c;
 	}
 	private static uint Maj(uint a, uint b, uint c)
 	{
-		return (a & b) | (a & c) | (b & c);
+		return (a & b) ^ (a & c) ^ (b & c);
 	}
 
 	public static uint[] PrepareMessageScheduleSHA1(List<uint> Input)
@@ -86,7 +100,7 @@ public class SHA_1
 		//fill 16 <= t <= 80 out
 		for (int h = 16; h < 80; h++)
 		{
-			output[h] = uint.RotateLeft(output[h - 3] | output[h - 8] | output[h - 14] | output[h - 16], 1);
+			output[h] = uint.RotateLeft(output[h - 3] ^ output[h - 8] ^ output[h - 14] ^ output[h - 16], 1);
 		}
 		return output;
 	}
