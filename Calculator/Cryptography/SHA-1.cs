@@ -22,7 +22,7 @@ public class SHA_1
 		List<uint> paddedMessage = PaddingMessageSHA1(Input);
 		for (int i = 0; i >= paddedMessage.Count / 64; i++)
 		{
-			//todo Prepare the message schedule
+			//Prepare the message schedule
 			int currentBlockIndex = i * 16;
 			uint[] messageSchedule = PrepareMessageScheduleSHA1(paddedMessage.Slice(currentBlockIndex, 16));
 
