@@ -59,11 +59,12 @@ namespace Calculator
             string hashString = BitConverter.ToString(bytes).Replace("-", "")/*.ToLowerInvariant()*/;
             Console.WriteLine(hashString);
             
-            //uint[] charToHexTest = SHA_1.PaddingMessageSHA1(inputBytes.ToList()).ToArray();
             uint even =   0b10101001011101011000110101100101;
             uint RotLeft = 0b01010010111010110001101011001011;
             Console.WriteLine(Convert.ToString(uint.RotateLeft(even, 1), 2));
             Console.WriteLine(Convert.ToString(RotLeft, 2));
+            uint[] charToHexTest = SHA_1.PaddingMessageSHA1(inputBytes.ToList()).ToArray();
+            Console.WriteLine(string.Concat(charToHexTest.Select(x => x.ToString("X8"))));
         }
         
         

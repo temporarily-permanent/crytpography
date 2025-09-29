@@ -34,6 +34,7 @@ public class SHA_1
 			{
 				T = uint.RotateLeft(a,5) + Ch(b,c,d) + e + K1 + messageSchedule[j];
 				e = d; d = c; c = uint.RotateLeft(b, 30); b = a; a = T;
+				
 			}
 			
 			for (int j = 20; j < 40; j++)
@@ -50,6 +51,7 @@ public class SHA_1
 			{
 				T = uint.RotateLeft(a,5) + Parity(b,c,d) + e + K4 + messageSchedule[j];
 				e = d; d = c; c = uint.RotateLeft(b, 30); b = a; a = T;
+				Console.WriteLine(j);
 			}
 
 			//compute intermediate hash
