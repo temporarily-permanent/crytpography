@@ -40,12 +40,30 @@ namespace Calculator
             uint[] output = new uint[5] { H0, H1, H2, H3, H4 };
 
 // Convert each uint to bytes (big-endian) and concatenate
-            byte[] bytes = output
+            /*byte[] bytes = output
                 .SelectMany(x => BitConverter.GetBytes(x).Reverse()) // Reverse if you want big-endian
-                .ToArray();
+                .ToArray();*/
+            byte[] bytes = new byte[20];
+
+            for (int i = 0; i < output.Length; i++)
+            {
+                byte[] temp = BitConverter.GetBytes(output[i]);
+                if (BitConverter.IsLittleEndian)
+                {
+                    Array.Reverse(temp);
+                } // fix endian
+
+                Buffer.BlockCopy(temp, 0, bytes, i * 4, 4);
+            }
 
             string hashString = BitConverter.ToString(bytes).Replace("-", "")/*.ToLowerInvariant()*/;
             Console.WriteLine(hashString);
+            
+            //uint[] charToHexTest = SHA_1.PaddingMessageSHA1(inputBytes.ToList()).ToArray();
+            uint even =   0b10101001011101011000110101100101;
+            uint RotLeft = 0b01010010111010110001101011001011;
+            Console.WriteLine(Convert.ToString(uint.RotateLeft(even, 1), 2));
+            Console.WriteLine(Convert.ToString(RotLeft, 2));
         }
         
         

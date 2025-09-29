@@ -55,8 +55,9 @@ public class SHA_1
 			//compute intermediate hash
 			H0 = a + H0; H1 = b + H1; H2 = c + H2; H3 = d + H3; H4 = e + H4;
 		}
-
+		
 		uint[] output = new uint[5]{H0, H1, H2, H3, H4};
+		return string.Concat(output.Select(x => x.ToString("X8")));
 		byte[] bytes = new byte[20];
 
 		for (int i = 0; i < output.Length; i++)
