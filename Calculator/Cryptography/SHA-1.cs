@@ -63,7 +63,8 @@ public class SHA_1
 
 	public static string SHA256(List<byte> Input)
 	{
-		/*const uint[] K = {
+		uint[] K =
+		{
 			0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
 			0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
 			0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
@@ -80,8 +81,7 @@ public class SHA_1
 			0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
 			0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
 			0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
-		}
-		*/
+		};
 		
 		uint H0 = 0x6a09e667;
 		uint H1 = 0xbb67ae85;
@@ -90,7 +90,16 @@ public class SHA_1
 		uint H4 = 0x510e527f;
 		uint H5 = 0x9b05688c;
 		uint H6 = 0x1f83d9ab;
-		uint H7 = 0x5be0cd19;
+		uint H7 = 0x5be0cd19;		
+		
+		List<uint> paddedMessage = PaddingMessageSHA1(Input);
+		for (int i = 0; i < paddedMessage.Count / 16; i++)
+		{
+			int currentBlockIndex = i * 16;
+			uint[] messageSchedule = PrepareMessageScheduleSHA256(paddedMessage.Slice(currentBlockIndex, 16));
+		}
+		
+		
 		throw new NotImplementedException();
 	}
 
@@ -105,6 +114,29 @@ public class SHA_1
 	private static uint Maj(uint a, uint b, uint c)
 	{
 		return (a & b) ^ (a & c) ^ (b & c);
+	}
+
+	
+
+	private static uint SigmaV1(uint a)
+	{
+		return uint.RotateRight(a, 7) ^ uint.RotateRight(a,  18) ^ a >>  3;
+	}
+
+	private static uint SigmaV2(uint a)
+	{
+		return uint.RotateRight(a, 17) ^ uint.RotateRight(a, 19) ^ a >> 10;
+	}
+
+
+	public static uint[] PrepareMessageScheduleSHA256(List<uint> Input)
+	{
+		uint[] output = new uint[64];
+		for (int j = 0 ; j < 16; j++)
+		{
+			output[j] = Input[j];
+		}
+		throw new NotImplementedException();
 	}
 
 	public static uint[] PrepareMessageScheduleSHA1(List<uint> Input)
