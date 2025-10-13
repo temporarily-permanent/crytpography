@@ -10,6 +10,9 @@ namespace Calculator
     {
         public static void Main()
         {
+            HashMap<char, int> map = new HashMap<char, int>(54);
+            map.Get('a');
+            
             Console.Write(BitConverter.IsLittleEndian);
             
             
