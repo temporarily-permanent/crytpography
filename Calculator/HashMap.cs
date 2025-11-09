@@ -14,7 +14,7 @@ public class HashMap<TKey, TValue>
 	//public Dictionary<char, int> map = new Dictionary<char, int>();
 	public HashMap(int capacity)
 	{
-		try
+		/*try
 		{
 			
 		}
@@ -22,7 +22,7 @@ public class HashMap<TKey, TValue>
 		{
 			Console.WriteLine(e);
 			throw;
-		}
+		}*/
 		size = capacity;
 		keys = new TKey[capacity];
 		values = new TValue[capacity];
@@ -47,10 +47,10 @@ public class HashMap<TKey, TValue>
 				index++;
 			}
 			
-			keys[index] = key;
+			/*keys[index] = key;
 			values[index] = value;
 			
-			return;
+			return;*/
 		}
 		
 		values[index] = value;
@@ -59,9 +59,20 @@ public class HashMap<TKey, TValue>
 
 	public TValue Get(TKey key)
 	{
-		BigInteger hash = new BigInteger(Encoding.UTF8.GetBytes(key.ToString()));
+		string hash = SHA_1.SHA1(Encoding.UTF8.GetBytes(key.ToString()).ToList());
+		BigInteger.TryParse(hash, out BigInteger bigInt);
+		int index = (int)(bigInt % size);
 		
 		//tood check presence overflow
+		if (EqualityComparer<TKey>.Default.Equals(keys[index], key) )
+		{
+			index++;
+			while (keys[index] != null)
+			{
+				index++;
+			}
+		}
+		
 		//todo resolve correct array item
 		
 		throw new NotImplementedException();
@@ -69,7 +80,7 @@ public class HashMap<TKey, TValue>
 
 	public void Remove(TKey key)
 	{
-		size--;
+		
 		throw new NotImplementedException();
 	}
 
