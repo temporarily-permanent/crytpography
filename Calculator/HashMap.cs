@@ -63,20 +63,14 @@ public class HashMap<TKey, TValue>
 		BigInteger.TryParse(hash, out BigInteger bigInt);
 		int index = (int)(bigInt % size);
 		
-		//tood check presence overflow
-		if (EqualityComparer<TKey>.Default.Equals(keys[index], key) )
+		// check presence overflow
+		while (!EqualityComparer<TKey>.Default.Equals(keys[index], key))
 		{
 			index++;
-			while (keys[index] != null)
-			{
-				index++;
-			}
 		}
 		
-		//todo resolve correct array item
-		
-		throw new NotImplementedException();
-	}
+		return values[index];
+		}
 
 	public void Remove(TKey key)
 	{
