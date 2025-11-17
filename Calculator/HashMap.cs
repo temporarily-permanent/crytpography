@@ -6,8 +6,8 @@ namespace Calculator;
 public class HashMap<TKey, TValue> 
 {
 	
-	private TKey?[] keys;
-	private TValue?[] values;
+	private TKey[] keys;
+	private TValue[] values;
 	
 	
 	private int size;
@@ -86,9 +86,6 @@ public class HashMap<TKey, TValue>
 		keys[index] = default;
 		values[index] = default;
 		return;
-		
-		
-		throw new NotImplementedException();
 	}
 
 	public void Resize(int newSize)
