@@ -6,8 +6,8 @@ namespace Calculator;
 public class HashMap<TKey, TValue> 
 {
 	
-	private TKey[] keys;
-	private TValue[] values;
+	private TKey?[] keys;
+	private TValue?[] values;
 	
 	
 	private int size;
@@ -69,20 +69,58 @@ public class HashMap<TKey, TValue>
 			index++;
 		}
 		
-		return values[index];
-		}
+		return values[index]; 
+	}
 
 	public void Remove(TKey key)
 	{
+		string hash = SHA_1.SHA1(Encoding.UTF8.GetBytes(key.ToString()).ToList());
+		BigInteger.TryParse(hash, out BigInteger bigInt);
+		int index = (int)(bigInt % size);
+
+		while (EqualityComparer<TKey>.Default.Equals(keys[index], key))
+		{
+			index++;
+		}
+		
+		keys[index] = default;
+		values[index] = default;
+		return;
+		
 		
 		throw new NotImplementedException();
 	}
 
 	public void Resize(int newSize)
 	{
+		TKey[] keysSuccessor = new TKey[newSize];
+		TValue[] valuesSuccessor = new TValue[newSize];
+		
+		// todo recalc all indexes
+		for (int i = 0; i < keys.Length; i++)
+		{
+			if (keys[i] != null)
+			{
+				string hash = SHA_1.SHA1(Encoding.UTF8.GetBytes(keys[i].ToString()).ToList());
+				BigInteger.TryParse(hash, out BigInteger bigInt);
+				int index = (int)(bigInt % size);
+			}
+		}
+		// todo resolve new collisions
+		// todo finialize data 
+		
 		size = newSize;
 		throw new NotImplementedException();
 	}
-	public void Resize() { throw new NotImplementedException(); }
+
+	public void Resize()
+	{
+		// todo determine size of new array
+		// todo recalc all indexes
+		// todo resolve new collisions
+		// todo finialize data 
+		
+		throw new NotImplementedException();
+	}
 	
 }
