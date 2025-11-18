@@ -6,8 +6,8 @@ namespace Calculator;
 public class HashMap<TKey, TValue> 
 {
 	
-	private TKey[] keys;
-	private TValue[] values;
+	private TKey?[] keys;
+	private TValue?[] values;
 	
 	
 	private int size;
@@ -57,7 +57,7 @@ public class HashMap<TKey, TValue>
 		keys[index] = key;
 	}
 
-	public TValue Get(TKey key)
+	public TValue? Get(TKey key)
 	{
 		string hash = SHA_1.SHA1(Encoding.UTF8.GetBytes(key.ToString()).ToList());
 		BigInteger.TryParse(hash, out BigInteger bigInt);
@@ -85,7 +85,6 @@ public class HashMap<TKey, TValue>
 		
 		keys[index] = default;
 		values[index] = default;
-		return;
 	}
 
 	public void Resize(int newSize)
@@ -93,7 +92,7 @@ public class HashMap<TKey, TValue>
 		TKey[] keysSuccessor = new TKey[newSize];
 		TValue[] valuesSuccessor = new TValue[newSize];
 		
-		// todo recalc all indexes
+		// recalc all indexes
 		for (int i = 0; i < keys.Length; i++)
 		{
 			if (keys[i] != null)
@@ -101,10 +100,21 @@ public class HashMap<TKey, TValue>
 				string hash = SHA_1.SHA1(Encoding.UTF8.GetBytes(keys[i].ToString()).ToList());
 				BigInteger.TryParse(hash, out BigInteger bigInt);
 				int index = (int)(bigInt % size);
+
+				// resolve new collisions
+				while (EqualityComparer<TKey>.Default!.Equals(keysSuccessor[index], keys[i]))
+				{
+					index++;
+				}
+				
+				keysSuccessor[index] = keys[i];
+				valuesSuccessor[index] = values[i];
 			}
 		}
-		// todo resolve new collisions
-		// todo finialize data 
+		
+		// finalize data 
+		keys = keysSuccessor;
+		values = valuesSuccessor;
 		
 		size = newSize;
 		throw new NotImplementedException();
@@ -112,10 +122,20 @@ public class HashMap<TKey, TValue>
 
 	public void Resize()
 	{
-		// todo determine size of new array
+		//determine size of new array
+		int count = 0;
+		for (int i = 0; i < keys.Length; i++)
+		{
+			if (keys[i] is null)
+				count++;
+		}
+		//just reuse existing resize with new size
+		Resize(count * 2);
+		
+		return;
 		// todo recalc all indexes
 		// todo resolve new collisions
-		// todo finialize data 
+		// todo finalize data 
 		
 		throw new NotImplementedException();
 	}
